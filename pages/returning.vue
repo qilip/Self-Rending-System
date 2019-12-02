@@ -1,8 +1,14 @@
 <template>
   <div>
-    <nuxt />
+    <p>
+      반납
+    </p>
   </div>
 </template>
+
+<script>
+
+</script>
 
 <style>
 
