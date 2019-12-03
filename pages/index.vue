@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <div class="flex-initial text-left h-32">
+  <div class="flex flex-col h-screen p-6">
+    <div class="flex-initial text-left h-32 my-6">
       <h1 class="font-bold text-5xl ml-8 mt-4">
         환영합니다
       </h1>

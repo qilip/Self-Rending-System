@@ -70,7 +70,7 @@
             </div>
             <hr v-if="index != added_items.length - 1">
           </template>
-
+          <hr>
           <div class="flex items-stretch">
             <h2 class="px-4 py-2 text-xl font-semibold flex-1">
               현재 보증금
@@ -98,7 +98,7 @@
             </div>
           </div>
 
-          <button class="shadow rounded bg-blue-200 hover:bg-blue-400 p-2 w-full my-6 block max-w-lg">
+          <button class="bg-blue-200 hover:bg-blue-400 p-2 w-full block flex-1">
             대여 요청하기
           </button>
         </div>
@@ -169,7 +169,4 @@ export default {
 </script>
 
 <style>
-h1, h2, h3, h4 {
-  font-family: 'NanumSquare', sans-serif;
-}
 </style>
