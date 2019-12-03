@@ -7,12 +7,16 @@
       <ul class="flex flex-row items-stretch">
         <li class="-mb-px mx-1 mt-2 border-l border-r border-t rounded-t border-blue-400 bg-white">
           <nuxt-link to="">
-            <h2 class="px-4 py-2 font-semibold">품목 관리</h2>
+            <h2 class="px-4 py-2 font-semibold">
+              품목 관리
+            </h2>
           </nuxt-link>
         </li>
         <li class="mx-1 mt-2">
           <nuxt-link to="">
-            <h2 class="px-4 py-2 font-semibold">사용자 관리</h2>
+            <h2 class="px-4 py-2 font-semibold">
+              사용자 관리
+            </h2>
           </nuxt-link>
         </li>
       </ul>
@@ -21,7 +25,7 @@
     <div class="flex flex-row">
       <div class="shadow-lg rounded m-6 overflow-hidden">
         <nuxt-link to="">
-          <img src="../static/image/rend.jpg"/>
+          <img src="../static/image/rend.jpg">
           <div class="text-xl font-semibold p-4 text-center">
             품목 관리
           </div>
@@ -30,7 +34,7 @@
 
       <div class="shadow-lg rounded m-6 overflow-hidden">
         <nuxt-link to="">
-          <img src="../static/image/rend.jpg"/>
+          <img src="../static/image/rend.jpg">
           <div class="text-xl font-semibold p-4 text-center">
             사용자 관리
           </div>
@@ -39,7 +43,7 @@
 
       <div class="shadow-lg rounded m-6 overflow-hidden">
         <nuxt-link to="">
-          <img src="../static/image/rend.jpg"/>
+          <img src="../static/image/rend.jpg">
           <div class="text-xl font-semibold p-4 text-center">
             정책 관리
           </div>

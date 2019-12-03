@@ -17,8 +17,8 @@
           </h2>
           <hr>
           <select name="item-to-rent" size="4" class="w-full block">
-            <option v-for="item in items" v-bind:value="item.id" class="px-4 py-2">
-              {{ item.name }}, 보증금 {{ numberWithCommas(item.credit) }} 원
+            <option v-for="item in itemDescriptions" v-bind:value="item.id" class="px-4 py-2">
+              {{ item.name }}, 보증금 {{ numberWithCommas(item.price) }} 원
             </option>
           </select>
           <hr>
@@ -108,6 +108,8 @@
 </template>
 
 <script>
+import axios from '../plugins/axios.js'
+
 function numberWithCommas (x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
@@ -116,33 +118,6 @@ export default {
   data () {
     return {
       current_credit: 10000,
-      items: [
-        {
-          id: 0,
-          name: '장우산',
-          credit: 2000
-        },
-        {
-          id: 1,
-          name: '계산기',
-          credit: 3000
-        },
-        {
-          id: 2,
-          name: '단우산',
-          credit: 1000
-        },
-        {
-          id: 3,
-          name: '돗자리',
-          credit: 2000
-        },
-        {
-          id: 4,
-          name: '행사용 텐트',
-          credit: 10000
-        }
-      ],
       added_items: [
         {
           id: 0,
@@ -160,6 +135,14 @@ export default {
           credit: 3000
         }
       ]
+    }
+  },
+  async asyncData ({ app }) {
+    // const { data } = await axios.get('http://localhost:3000')
+    const { data } = await axios.get('/api/desc')
+
+    return {
+      itemDescriptions: data
     }
   },
   methods: {
