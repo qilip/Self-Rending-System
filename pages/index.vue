@@ -1,15 +1,18 @@
 <template>
-  <div class="text-center">
-    <div>
-      <h1 class="text-5xl m-4">
-        Self Rending System
+  <div class="flex flex-col h-screen">
+    <div class="flex-initial text-left h-32">
+      <h1 class="font-bold text-5xl ml-8 mt-4">
+        환영합니다
       </h1>
-      <h2 class="text-3xl m-4">
-        물품 대여 시스템
+      <h2 class="text-3xl ml-8">
+        원하는 메뉴를 선택해주세요
       </h2>
-      <div class="flex justify-center items-center mx-auto">
-        <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
-          <nuxt-link to="/rending">
+    </div>
+
+    <div class="flex-1 justify-center item-center overflow-auto">
+      <div class="flex self-center text-center justify-center items-center mx-auto">
+        <div class="flex-1 self-center max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+          <nuxt-link to="/rentAuth">
             <img class="w-full" src="/image/rend.jpg" alt="Rending goods">
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">
@@ -21,7 +24,7 @@
             </div>
           </nuxt-link>
         </div>
-        <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
+        <div class="flex-1 self-center max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
           <nuxt-link to="/returning">
             <img class="w-full" src="/image/return.jpg" alt="Rending goods">
             <div class="px-6 py-4">
@@ -34,34 +37,34 @@
             </div>
           </nuxt-link>
         </div>
-      </div>
-      <div class="flex max-w-4xl justify-center items-center mx-auto">
-        <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
-          <nuxt-link to="/payment">
-            <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">
-                보증금 충전
+        <div class="flex-col self-center max-w-sm w-full">
+          <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+            <nuxt-link to="/payment">
+              <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                  보증금 충전
+                </div>
               </div>
-            </div>
-          </nuxt-link>
-        </div>
-        <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
-          <nuxt-link to="/refunding">
-            <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">
-                보증금 반환
+            </nuxt-link>
+          </div>
+          <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+            <nuxt-link to="refunding">
+              <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                  보증금 반납
+                </div>
               </div>
-            </div>
-          </nuxt-link>
-        </div>
-        <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
-          <nuxt-link to="/managing">
-            <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">
-                관리자 메뉴
+            </nuxt-link>
+          </div>
+          <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+            <nuxt-link to="managing">
+              <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                  관리자 메뉴
+                </div>
               </div>
-            </div>
-          </nuxt-link>
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </div>

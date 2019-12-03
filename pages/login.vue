@@ -31,9 +31,9 @@ export default {
     }
   },
   methods: {
-    test () {
-      console.log(this.id + ', ' + this.password)
-    }
+    // test () {
+    //   console.log(this.id + ', ' + this.password)
+    // }
   }
 }
 </script>
