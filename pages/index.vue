@@ -8,8 +8,8 @@
         물품 대여 시스템
       </h2>
       <div class="flex justify-center items-center mx-auto">
-        <nuxt-link to="/rending">
-          <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
+        <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
+          <nuxt-link to="/rending">
             <img class="w-full" src="/image/rend.jpg" alt="Rending goods">
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">
@@ -19,10 +19,10 @@
                 원하는 물품을 대여할 수 있습니다.
               </p>
             </div>
-          </div>
-        </nuxt-link>
-        <nuxt-link to="/returning">
-          <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
+          </nuxt-link>
+        </div>
+        <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
+          <nuxt-link to="/returning">
             <img class="w-full" src="/image/return.jpg" alt="Rending goods">
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">
@@ -32,30 +32,36 @@
                 사용한 물품을 반납할 수 있습니다.
               </p>
             </div>
-          </div>
-        </nuxt-link>
+          </nuxt-link>
+        </div>
       </div>
       <div class="flex max-w-4xl justify-center items-center mx-auto">
         <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">
-              보증금 충전
+          <nuxt-link to="/payment">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">
+                보증금 충전
+              </div>
             </div>
-          </div>
+          </nuxt-link>
         </div>
         <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">
-              보증금 반납
+          <nuxt-link to="/refunding">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">
+                보증금 반환
+              </div>
             </div>
-          </div>
+          </nuxt-link>
         </div>
         <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg m-8">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">
-              관리자 메뉴
+          <nuxt-link to="/managing">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">
+                관리자 메뉴
+              </div>
             </div>
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
