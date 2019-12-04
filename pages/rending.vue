@@ -8,12 +8,12 @@
         물품 선택
       </h2>
     </div>
-    <div class="flex">
-      <div class="w-1/3 px-4">
+    <div class="flex flex-wrap p-4">
+      <div class="p-4 w-full lg:w-1/3">
         <div class="shadow rounded overflow-hidden">
           <h2 class="px-4 py-2 text-xl font-semibold">
             물품 목록
-            <span class="mx-2 rounded p-2 bg-red-600 text-white text-sm font-normal">⚠ 데모용</span>
+            <span class="mx-2 rounded p-2 bg-red-600 text-white text-sm font-normal inline-block">⚠ 데모용</span>
           </h2>
           <hr>
           <select name="item-to-rent" size="4" class="w-full block">
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div class="w-1/3 px-4">
+      <div class="p-4 w-full lg:w-1/3">
         <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mb-8">
           <p class="font-bold">
             물품에 있는 바코드를 인식시켜주세요!
@@ -40,7 +40,7 @@
         <div class="shadow rounded overflow-hidden">
           <h2 class="px-4 py-2 text-xl font-semibold">
             물품 코드 직접 입력
-            <span class="mx-2 rounded p-2 bg-red-600 text-white text-sm font-normal">⚠ 데모용</span>
+            <span class="mx-2 rounded p-2 bg-red-600 text-white text-sm font-normal inline-block">⚠ 데모용</span>
           </h2>
           <hr>
           <input placeholder="시리얼 번호" class="px-4 py-2 w-full">
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div class="w-1/3 px-4">
+      <div class="p-4 w-full lg:w-1/3">
         <div class="shadow rounded overflow-hidden">
           <h2 class="px-4 py-2 font-semibold text-xl">
             대여 대기 목록
