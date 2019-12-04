@@ -9,9 +9,9 @@
       </h2>
     </div>
 
-    <div class="flex-1 justify-center item-center overflow-auto">
-      <div class="flex self-center text-center justify-center items-center mx-auto">
-        <div class="flex-1 self-center max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+    <div class="flex-1 max-w-6xl self-center my-6">
+      <div class="flex flex-col md:flex-row text-center justify-center items-stretch">
+        <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
           <nuxt-link to="/rentAuth">
             <img class="w-full" src="/image/rend.jpg" alt="Rending goods">
             <div class="px-6 py-4">
@@ -24,7 +24,8 @@
             </div>
           </nuxt-link>
         </div>
-        <div class="flex-1 self-center max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+
+        <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
           <nuxt-link to="/returning">
             <img class="w-full" src="/image/return.jpg" alt="Rending goods">
             <div class="px-6 py-4">
@@ -37,29 +38,32 @@
             </div>
           </nuxt-link>
         </div>
-        <div class="flex-col self-center max-w-sm w-full">
-          <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+
+        <div class="flex-1 flex flex-col m-4">
+          <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl my-4 mt-0">
             <nuxt-link to="/payment">
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">
+              <div class="h-full flex justify-center items-center p-6">
+                <div class="font-bold text-xl">
                   보증금 충전
                 </div>
               </div>
             </nuxt-link>
           </div>
-          <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+
+          <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl my-4">
             <nuxt-link to="refunding">
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">
+              <div class="h-full flex justify-center items-center p-6">
+                <div class="font-bold text-xl">
                   보증금 반납
                 </div>
               </div>
             </nuxt-link>
           </div>
-          <div class="flex-1 max-w-sm rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
+
+          <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl my-4 mb-0">
             <nuxt-link to="managing">
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">
+              <div class="h-full flex justify-center items-center p-6">
+                <div class="font-bold text-xl">
                   관리자 메뉴
                 </div>
               </div>

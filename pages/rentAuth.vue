@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen p-8">
+  <div class="flex flex-col h-screen p-8 max-w-xl mx-auto">
     <div class="flex-initial text-left h-32 mb-6">
       <h1 class="font-bold text-5xl ml-8 mt-4">
         대여 로그인
