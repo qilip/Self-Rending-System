@@ -4,14 +4,13 @@ const Koa = require('koa')
 const Router = require('koa-router')
 
 const app = new Koa()
-const router = new Router()
 
 const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
 
 mongoose.connect(process.env.MONGO_URI, {
-  dbName: 'srs',
+  dbName: 'srsdb',
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(
@@ -22,11 +21,20 @@ mongoose.connect(process.env.MONGO_URI, {
   console.error(e)
 })
 
-router.get('/', (ctx) => {
+const api = new Router()
+const items = require('./items')
+const customers = require('./customers')
+const manage = require('./manage')
+
+api.get('/', (ctx) => {
   ctx.body = 'Hi! this is TEST API response'
 })
 
-app.use(router.routes()).use(router.allowedMethods())
+api.use('/items', items.routes())
+api.use('/customers', customers.routes())
+api.use('/manage', manage.routes())
+
+app.use(api.routes()).use(api.allowedMethods())
 
 module.exports = {
   path: '/api',
