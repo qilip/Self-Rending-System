@@ -138,7 +138,7 @@ export default {
     }
   },
   async asyncData ({ params, $axios }) {
-    const { data } = await $axios.get(`/api/items/descriptions`)
+    const { data } = await $axios.$get(`/api/items/descriptions`)
     return {
       items: data
     }
