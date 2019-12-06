@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen p-6 no-underline">
+  <div class="flex flex-col h-screen p-6">
     <div class="flex-initial text-left h-32 my-6">
       <h1 class="font-bold text-5xl ml-8 mt-4">
         환영합니다
@@ -12,7 +12,7 @@
     <div class="flex-1 max-w-6xl self-center my-6">
       <div class="flex flex-col md:flex-row text-center justify-center items-stretch">
         <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
-          <nuxt-link to="/rentAuth">
+          <nuxt-link to="/rentAuth" class="no-underline text-black">
             <img class="w-full" src="/image/rend.jpg" alt="Rending goods">
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
-          <nuxt-link to="/returning">
+          <nuxt-link to="/returning" class="no-underline text-black">
             <img class="w-full" src="/image/return.jpg" alt="Rending goods">
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">
@@ -41,7 +41,7 @@
 
         <div class="flex-1 flex flex-col m-4">
           <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl my-4 mt-0">
-            <nuxt-link to="/payment">
+            <nuxt-link to="/payment" class="no-underline text-black">
               <div class="h-full flex justify-center items-center p-6">
                 <div class="font-bold text-xl">
                   보증금 충전
@@ -51,7 +51,7 @@
           </div>
 
           <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl my-4">
-            <nuxt-link to="refunding">
+            <nuxt-link to="refunding" class="no-underline text-black">
               <div class="h-full flex justify-center items-center p-6">
                 <div class="font-bold text-xl">
                   보증금 반납
@@ -61,7 +61,7 @@
           </div>
 
           <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl my-4 mb-0">
-            <nuxt-link to="managing">
+            <nuxt-link to="managing" class="no-underline text-black">
               <div class="h-full flex justify-center items-center p-6">
                 <div class="font-bold text-xl">
                   관리자 메뉴

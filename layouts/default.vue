@@ -2,7 +2,7 @@
   <div class="max-h-screen flex flex-col">
     <div class="p-4 shadow flex flex-row justify-between items-center">
       <div class="font-bold text-lg">
-        <nuxt-link to="/">
+        <nuxt-link to="/" class="no-underline text-black">
           Self Rending System
         </nuxt-link>
       </div>
