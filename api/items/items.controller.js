@@ -1,37 +1,44 @@
+const Item = require('../../models/item')
 const ItemDescription = require('../../models/itemDescription')
 
-exports.discList = async (ctx) => {
-  let itemDescriptions
+exports.read = async (ctx) => {
+  const { id } = ctx.params
 
-  try {
-    itemDescriptions = await ItemDescription.find().exec()
+  let item
+
+  try{
+    item = await Item.findOne( { "itemId":id } ).exec()
   } catch (e) {
     return ctx.throw(500, e)
   }
 
-  ctx.body = itemDescriptions
+  if(!item) {
+    ctx.status = 404
+    ctx.body = { message: '존재하지 않는 물품 종류입니다' }
+    return
+  }
+
+  ctx.body = item
 }
 
-exports.discRead = (ctx) => {
-  ctx.body = 'description Read'
-}
-
-exports.discCreate = async (ctx) => {
+exports.create = async (ctx) => {
   const {
-    name,
-    price
+    description
   } = ctx.request.body
 
-  const itemDescription = new ItemDescription({
-    name,
-    price
+  const item = new Item({
+    description
   })
 
+  let itemDescription
+
   try {
-    await itemDescription.save()
+    await item.save()
+    itemDescription = await ItemDescription.findOne( { 'id': description } ).exec()
+    await itemDescription.addItem(item.itemId)
   } catch (e) {
     return ctx.throw(500, e)
   }
 
-  ctx.body = itemDescription
+  ctx.body = item
 }

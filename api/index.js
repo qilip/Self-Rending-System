@@ -13,7 +13,9 @@ mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGO_URI, {
   dbName: 'srsdb',
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
 }).then(
   (response) => {
     console.log('MongoDB Connect Sucess')
