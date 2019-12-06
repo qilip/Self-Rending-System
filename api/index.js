@@ -6,6 +6,7 @@ const Router = require('koa-router')
 const app = new Koa()
 
 const mongoose = require('mongoose')
+const bodyParser = require('koa-bodyparser')
 
 mongoose.Promise = global.Promise
 
@@ -25,6 +26,8 @@ const api = new Router()
 const items = require('./items')
 const customers = require('./customers')
 const manage = require('./manage')
+
+api.use(bodyParser())
 
 api.get('/', (ctx) => {
   ctx.body = 'Hi! this is TEST API response'

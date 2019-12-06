@@ -1,6 +1,7 @@
 const Router = require('koa-router')
 
 const items = new Router
+const itemsCtrl = require('./items.controller')
 
 items.get('/', (ctx) => {
   ctx.body = 'items API root'
@@ -10,11 +11,11 @@ const dummy = (ctx) => {
   ctx.body = `${ctx.request.method} :: ${ctx.request.path} -- Dummy API`
 }
 
-items.get('/descriptions', dummy)
+items.get('/descriptions', itemsCtrl.discList)
 
-items.get('/descriptions/:id', dummy)
+items.post('/descriptions', itemsCtrl.discCreate)
 
-items.post('/descriptions/:id', dummy)
+items.get('/descriptions/:id', itemsCtrl.discRead)
 
 items.put('/descriptions/:id', dummy)
 

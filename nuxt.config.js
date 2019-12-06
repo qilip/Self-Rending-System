@@ -50,7 +50,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: '/'
+    baseURL: '0.0.0.0:process.env.PORT'
   },
   serverMiddleware: [
     '~/api/index.js'

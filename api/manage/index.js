@@ -20,4 +20,6 @@ manage.put('/rules/:id', dummy)
 
 manage.get('/analysis', dummy)
 
+manage.post('/analysis', dummy)
+
 module.exports = manage

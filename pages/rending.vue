@@ -16,9 +16,9 @@
             <span class="mx-2 rounded p-2 bg-red-600 text-white text-sm font-normal inline-block">⚠ 데모용</span>
           </h2>
           <hr>
-          <select name="item-to-rent" size="4" class="w-full block">
+          <select name="item-to-rent" size="6" class="w-full block">
             <option v-for="item in items" v-bind:value="item.id" class="px-4 py-2">
-              {{ item.name }}, 보증금 {{ numberWithCommas(item.credit) }} 원
+              {{ item.name }}, 보증금 {{ numberWithCommas(item.price) }} 원
             </option>
           </select>
           <hr>
@@ -62,7 +62,7 @@
                 {{ item.name }}
               </div>
               <div class="shadow-inner px-4 py-2 bg-gray-100 flex-auto text-right">
-                {{ numberWithCommas(item.credit) }} 원
+                {{ numberWithCommas(item.price) }} 원
               </div>
               <button class="bg-red-300 px-4 py-2 hover:bg-red-400 block">
                 제거
@@ -113,53 +113,34 @@ function numberWithCommas (x) {
 }
 
 export default {
+
   data () {
     return {
       current_credit: 10000,
-      items: [
-        {
-          id: 0,
-          name: '장우산',
-          credit: 2000
-        },
-        {
-          id: 1,
-          name: '계산기',
-          credit: 3000
-        },
-        {
-          id: 2,
-          name: '단우산',
-          credit: 1000
-        },
-        {
-          id: 3,
-          name: '돗자리',
-          credit: 2000
-        },
-        {
-          id: 4,
-          name: '행사용 텐트',
-          credit: 10000
-        }
-      ],
+      items: [],
       added_items: [
         {
           id: 0,
           name: '장우산',
-          credit: 2000
+          price: 2000
         },
         {
           id: 1,
           name: '계산기',
-          credit: 3000
+          price: 3000
         },
         {
           id: 1,
           name: '계산기',
-          credit: 3000
+          price: 3000
         }
       ]
+    }
+  },
+  async asyncData ({ params, $axios }) {
+    const { data } = await $axios.get(`/api/items/descriptions`)
+    return {
+      items: data
     }
   },
   methods: {
