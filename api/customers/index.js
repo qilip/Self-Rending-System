@@ -1,18 +1,19 @@
 const Router = require('koa-router')
 
 const customers = new Router
+const customersCtrl = require('./customers.controller')
 
 const dummy = (ctx) => {
   ctx.body = `${ctx.request.method} :: ${ctx.request.path} -- Dummy API`
 }
 
-customers.get('/', dummy)
+customers.get('/', customersCtrl.list)
 
-customers.get('/:id', dummy)
+customers.get('/:id', customersCtrl.read)
 
-customers.post('/:id', dummy)
+customers.post('/new', customersCtrl.create)
 
-customers.put('/:id', dummy)
+customers.patch('/:id', customersCtrl.update)
 
 customers.get('/:id/check', dummy)
 

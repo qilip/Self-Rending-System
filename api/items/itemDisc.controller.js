@@ -1,4 +1,5 @@
 const ItemDescription = require('../../models/itemDescription')
+const Item = require ('../../models/item')
 
 exports.list = async (ctx) => {
   let itemDescriptions
@@ -50,4 +51,34 @@ exports.read = async (ctx) => {
   }
 
   ctx.body = itemDescription
+}
+
+exports.update = async (ctx) => {
+  const { id } = ctx.params
+  
+  let itemDescription
+
+  try {
+    itemDescription = await ItemDescription.findOneAndUpdate({ 'id': id }, ctx.request.body, {
+      new: true
+    })
+  } catch (e) {
+    return ctx.throw(500, e)
+  }
+
+  ctx.body = itemDescription
+}
+
+exports.delete = async (ctx) => {
+  const { id } = ctx.params
+
+  try {
+    let itemDescription = await ItemDescription.findOne({ 'id': id }).exec()
+    await Item.deleteMany({ 'description': itemDescription.id }).exec()
+    await ItemDescription.findOneAndRemove({ 'id': id }).exec()
+  } catch (e) {
+    return ctx.throw(500, e)
+  }
+
+  ctx.body = 'delete sucess'
 }

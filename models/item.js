@@ -4,7 +4,7 @@ const { Schema } = mongoose
 
 const Item = new Schema({
   itemId: { type: Number, index: true },
-  description: Number,
+  description: { type: Number, index: true },
   status: {
     type: String,
     enum: ['available', 'pending', 'rented'],

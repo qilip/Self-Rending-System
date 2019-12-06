@@ -152,9 +152,9 @@ export default {
     }
   },
   methods: {
-    test () {
-      console.log('test')
-    }
+    // test () {
+    //   console.log('test')
+    // }
   }
 }
 </script>
