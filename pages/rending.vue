@@ -28,12 +28,12 @@
           <hr>
           <div class="flex items-stretch">
             <div class="px-4 py-2 flex-1">
-              아이템 이름
+              물품 이름
             </div>
-            <div class="px-4 py-2 shadow-inner bg-gray-100 w-20 text-right">
+            <div class="px-4 py-2 w-20 text-right">
               시리얼
             </div>
-            <div class="shadow-inner px-4 py-2 bg-gray-100 w-40 text-right">
+            <div class="px-4 py-2 w-40 text-right">
               대여 보증금
             </div>
           </div>
@@ -81,6 +81,20 @@
           <h2 class="px-4 py-2 font-semibold text-xl">
             대여 대기 목록
           </h2>
+          <div class="flex items-stretch">
+            <div class="px-4 py-2 flex-1">
+              물품 이름
+            </div>
+            <div class="px-4 py-2 w-20 text-right">
+              시리얼
+            </div>
+            <div class="px-4 py-2 w-40 text-right">
+              대여 보증금
+            </div>
+            <div class="px-4 py-2 block">
+              제거
+            </div>
+          </div>
           <template v-for="(item, index) in addedItems">
             <hr>
             <div class="flex items-stretch">
@@ -246,7 +260,7 @@ export default {
         customerID: this.customerID,
         serialNumbers: this.addedItems.map(item => item.serialNumber)
       }).then((res) => {
-        alert('success')
+        alert('대여가 완료되었습니다.')
         this.$router.push({
           path: '/'
         })

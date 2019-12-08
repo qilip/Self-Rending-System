@@ -53,8 +53,12 @@
 
     <div>
       <div v-show="currentTab == 0" class="p-6">
-        <div class="flex flex-wrap m-4">
-          <div class="p-4 w-full md:max-w-xl">
+        <h1 class="text-left font-bold text-5xl ml-6">
+          물품 관리
+        </h1>
+
+        <div class="flex flex-wrap p-4 p-8 mx-auto">
+          <div class="p-4 w-full lg:w-1/3">
             <h1 class="text-3xl font-bold mb-6">
               품목 관리
             </h1>
@@ -63,23 +67,43 @@
               <menu-item-heading>
                 품목 목록
               </menu-item-heading>
+              <hr>
+              <div class="flex items-stretch">
+                <div class="px-4 py-2 flex-1">
+                  물품 이름
+                </div>
+                <div class="px-4 py-2 w-20 text-right">
+                  시리얼
+                </div>
+                <div class="px-4 py-2 w-24 text-right">
+                  보증금
+                </div>
+                <div class="px-4 py-2 w-32 text-right">
+                  물품 시리얼
+                </div>
+              </div>
               <template v-for="desc in itemDescriptions">
                 <hr>
-                <menu-item-spacer />
-                <hr>
-                <menu-item-value v-bind:value="desc.name" name="이름" />
-                <hr>
-                <menu-item-value v-bind:value="desc.id" name="품목 번호" />
-                <hr>
-                <menu-item-value v-bind:value="desc.price + ' 원'" name="대여 보증금" />
-                <hr>
-                <menu-item-value v-bind:value="desc.items.join(', ')" name="물품 시리얼" />
+                <div class="flex items-stretch">
+                  <div class="px-4 py-2 flex-1">
+                    {{ desc.name }}
+                  </div>
+                  <div class="px-4 py-2 w-20 shadow-inner bg-gray-100 text-right">
+                    {{ desc.id }}
+                  </div>
+                  <div class="px-4 py-2 w-24 shadow-inner bg-gray-100 text-right">
+                    {{ desc.price }}
+                  </div>
+                  <div class="px-4 py-2 w-32 shadow-inner bg-gray-100 text-right">
+                    {{ desc.items.join(', ') }}
+                  </div>
+                </div>
               </template>
             </menu-block>
 
             <menu-block class="my-6 max-w-xl">
               <menu-item-heading>
-                추가
+                품목 추가
               </menu-item-heading>
               <hr>
               <menu-item-spacer />
@@ -93,7 +117,7 @@
 
             <menu-block class="my-6 max-w-xl">
               <menu-item-heading>
-                삭제
+                품목 삭제
               </menu-item-heading>
               <hr>
               <menu-item-spacer />
@@ -105,7 +129,7 @@
 
             <menu-block class="my-6 max-w-xl">
               <menu-item-heading>
-                수정
+                품목 수정
               </menu-item-heading>
               <hr>
               <menu-item-spacer />
@@ -120,7 +144,7 @@
             </menu-block>
           </div>
 
-          <div class="p-4 w-full md:max-w-xl">
+          <div class="p-4 w-full lg:w-1/3">
             <h1 class="text-3xl font-bold mb-6">
               물품 관리
             </h1>
@@ -129,17 +153,38 @@
               <menu-item-heading>
                 물품 목록
               </menu-item-heading>
+              <hr>
+              <div class="flex items-stretch">
+                <div class="px-4 py-2 flex-1">
+                  시리얼
+                </div>
+                <div class="px-4 py-2 w-32 text-right">
+                  품목 번호
+                </div>
+                <div class="px-4 py-2 w-24 text-right">
+                  상태
+                </div>
+                <div class="px-4 py-2 w-32 text-right">
+                  빌린 사람
+                </div>
+              </div>
+
               <template v-for="item in items">
                 <hr>
-                <MenuItemSpacer />
-                <hr>
-                <MenuItemValue v-bind:value="item.serialNumber" name="시리얼 번호" />
-                <hr>
-                <MenuItemValue v-bind:value="item.status" name="상태" />
-                <hr>
-                <MenuItemValue v-bind:value="item.itemId" name="품목 번호" />
-                <hr>
-                <MenuItemValue v-bind:value="item.customerId" name="빌린 사람" />
+                <div class="flex items-stretch">
+                  <div class="px-4 py-2 flex-1">
+                    {{ item.serialNumber }}
+                  </div>
+                  <div class="px-4 py-2 w-32 shadow-inner bg-gray-100 text-right">
+                    {{ item.itemId }}
+                  </div>
+                  <div class="px-4 py-2 w-24 shadow-inner bg-gray-100 text-right">
+                    {{ item.status }}
+                  </div>
+                  <div class="px-4 py-2 w-32 shadow-inner bg-gray-100 text-right">
+                    {{ item.customerId }}
+                  </div>
+                </div>
               </template>
             </menu-block>
 
@@ -197,22 +242,50 @@
               <hr>
               <MenuItemButton v-on:click.native="modifyItem()" name="수정" />
             </menu-block>
+          </div>
 
+          <div class="p-4 w-full lg:w-1/3">
+            <h1 class="text-3xl font-bold mb-6">
+              물품 반납 처리
+            </h1>
             <menu-block class="my-6 max-w-xl">
               <menu-item-heading>
-                물품 반납 확인
+                반납 확인
               </menu-item-heading>
+              <hr>
+              <div class="flex items-stretch">
+                <div class="px-4 py-2 flex-1">
+                  품목 이름
+                </div>
+                <div class="px-4 py-2 w-20 text-right">
+                  시리얼
+                </div>
+                <div class="px-4 py-2 w-32 text-right">
+                  빌린 사람
+                </div>
+                <div class="px-4 py-2 block">
+                  확인
+                </div>
+              </div>
               <template v-for="item in items.filter(item => item.status === 'pending')">
                 <hr>
-                <MenuItemSpacer />
-                <hr>
-                <MenuItemValue v-bind:value="findDescription(item).name" name="이름" />
-                <hr>
-                <MenuItemValue v-bind:value="item.serialNumber" name="시리얼 번호" />
-                <hr>
-                <MenuItemValue v-bind:value="item.customerId" name="빌린 사람" />
-                <hr>
-                <MenuItemButton v-on:click.native="acceptReturn(item)" name="확인" />
+                <div class="flex items-stretch">
+                  <div class="px-4 py-2 flex-1">
+                    {{ findDescription(item).name }}
+                  </div>
+                  <div class="px-4 py-2 w-20 shadow-inner bg-gray-100 text-right">
+                    {{ item.serialNumber }}
+                  </div>
+                  <div class="px-4 py-2 w-32 shadow-inner bg-gray-100 text-right">
+                    {{ item.customerId }}
+                  </div>
+                  <button
+                    v-on:click="acceptReturn(item)"
+                    class="bg-red-300 px-4 py-2 hover:bg-red-400 block"
+                  >
+                    확인
+                  </button>
+                </div>
               </template>
               <template v-if="items.filter(item => item.staus === 'pending')">
                 <hr>
@@ -231,60 +304,76 @@
         <h1 class="text-3xl font-bold mb-6">
           사용자 관리
         </h1>
+        <div class="flex flex-wrap p-4 p-8 mx-auto">
+          <div class="p-4 w-full lg:w-1/3">
+            <menu-block class="my-6 max-w-xl">
+              <menu-item-heading>
+                사용자 목록
+              </menu-item-heading>
+              <hr>
+              <div class="flex items-stretch">
+                <div class="px-4 py-2 flex-1">
+                  학번
+                </div>
+                <div class="px-4 py-2 w-1/2 text-right">
+                  보증금
+                </div>
+              </div>
+              <template v-for="customer in customers">
+                <hr>
+                <div class="flex items-stretch">
+                  <div class="px-4 py-2 flex-1">
+                    {{ customer.studentId }}
+                  </div>
+                  <div class="px-4 py-2 w-1/2 shadow-inner bg-gray-100 text-right">
+                    {{ customer.credit }}
+                  </div>
+                </div>
+              </template>
+            </menu-block>
+          </div>
+          <div class="p-4 w-full lg:w-1/3">
+            <menu-block class="my-6 max-w-xl">
+              <menu-item-heading>
+                사용자 추가
+              </menu-item-heading>
+              <hr>
+              <MenuItemSpacer />
+              <hr>
+              <MenuItemInput v-model="customerAddForm.studentId" name="학번" placeholder="student id" />
+              <hr>
+              <MenuItemInput v-model="customerAddForm.credit" name="보증금" placeholder="credit" />
+              <hr>
+              <MenuItemButton v-on:click.native="addCustomer()" name="추가" />
+            </menu-block>
 
-        <menu-block class="my-6 max-w-xl">
-          <menu-item-heading>
-            사용자 목록
-          </menu-item-heading>
-          <template v-for="customer in customers">
-            <hr>
-            <MenuItemSpacer />
-            <hr>
-            <MenuItemValue v-bind:value="customer.studentId" name="학번" />
-            <hr>
-            <MenuItemValue v-bind:value="customer.credit" name="보증금" />
-          </template>
-        </menu-block>
+            <menu-block class="my-6 max-w-xl">
+              <menu-item-heading>
+                사용자 삭제
+              </menu-item-heading>
+              <hr>
+              <MenuItemSpacer />
+              <hr>
+              <MenuItemInput v-model="customerDeleteForm.studentId" name="학번" placeholder="student id" />
+              <hr>
+              <MenuItemButton v-on:click.native="deleteCustomer()" name="삭제" />
+            </menu-block>
 
-        <menu-block class="my-6 max-w-xl">
-          <menu-item-heading>
-            사용자 추가
-          </menu-item-heading>
-          <hr>
-          <MenuItemSpacer />
-          <hr>
-          <MenuItemInput v-model="customerAddForm.studentId" name="학번" placeholder="student id" />
-          <hr>
-          <MenuItemInput v-model="customerAddForm.credit" name="보증금" placeholder="credit" />
-          <hr>
-          <MenuItemButton v-on:click.native="addCustomer()" name="추가" />
-        </menu-block>
-
-        <menu-block class="my-6 max-w-xl">
-          <menu-item-heading>
-            사용자 삭제
-          </menu-item-heading>
-          <hr>
-          <MenuItemSpacer />
-          <hr>
-          <MenuItemInput v-model="customerDeleteForm.studentId" name="학번" placeholder="student id" />
-          <hr>
-          <MenuItemButton v-on:click.native="deleteCustomer()" name="삭제" />
-        </menu-block>
-
-        <menu-block class="my-6 max-w-xl">
-          <menu-item-heading>
-            사용자 수정
-          </menu-item-heading>
-          <hr>
-          <MenuItemSpacer />
-          <hr>
-          <MenuItemInput v-model="customerModifyForm.studentId" name="학번" placeholder="student id" />
-          <hr>
-          <MenuItemInput v-model="customerModifyForm.credit" name="보증금" placeholder="액수" />
-          <hr>
-          <MenuItemButton v-on:click.native="modifyCustomer()" name="수정" />
-        </menu-block>
+            <menu-block class="my-6 max-w-xl">
+              <menu-item-heading>
+                사용자 수정
+              </menu-item-heading>
+              <hr>
+              <MenuItemSpacer />
+              <hr>
+              <MenuItemInput v-model="customerModifyForm.studentId" name="학번" placeholder="student id" />
+              <hr>
+              <MenuItemInput v-model="customerModifyForm.credit" name="보증금" placeholder="액수" />
+              <hr>
+              <MenuItemButton v-on:click.native="modifyCustomer()" name="수정" />
+            </menu-block>
+          </div>
+        </div>
       </div>
 
       <div v-show="currentTab == 2" class="p-6">
@@ -298,27 +387,46 @@
           기록 열람
         </h1>
 
-        <menu-block class="my-6 max-w-xl">
+        <menu-block class="my-6 max-w-3xl">
           <menu-item-heading>
             기록
           </menu-item-heading>
+          <hr>
+          <div class="flex items-stretch">
+            <div class="px-4 py-2 flex-1 text-center">
+              날짜
+            </div>
+            <div class="px-4 py-2 w-20 text-center">
+              분류
+            </div>
+            <div class="px-4 py-2 w-40 text-right">
+              학번
+            </div>
+            <div class="px-4 py-2 w-40 text-right">
+              물품 번호
+            </div>
+          </div>
           <template v-for="record in records">
             <hr>
-            <MenuItemSpacer />
-            <hr>
-            <MenuItemValue v-bind:value="record.__t" name="종류" />
-            <hr>
-            <MenuItemValue v-bind:value="record.Date" name="날짜" />
-            <hr>
-            <MenuItemValue v-bind:value="record.CustomerId" name="고객" />
-            <template v-if="record.__t == 'RentRecord'">
-              <hr>
-              <MenuItemValue v-bind:value="record.SerialNumber" name="빌린 물품" />
-            </template>
-            <template v-if="record.__t == 'ReturnRecord'">
-              <hr>
-              <MenuItemValue v-bind:value="record.SerialNumber" name="반납한 물품" />
-            </template>
+            <div class="flex items-stretch">
+              <div class="px-4 py-2 flex-1 text-center">
+                {{ record.Date }}
+              </div>
+              <div class="px-4 py-2 w-20 shadow-inner bg-gray-100 text-center">
+                <div v-if="record.__t == 'RentRecord'">
+                  대여
+                </div>
+                <div v-else>
+                  반납
+                </div>
+              </div>
+              <div class="px-4 py-2 w-40 shadow-inner bg-gray-100 text-right">
+                {{ record.CustomerId }}
+              </div>
+              <div class="px-4 py-2 w-40 shadow-inner bg-gray-100 text-right">
+                {{ record.SerialNumber }}
+              </div>
+            </div>
           </template>
         </menu-block>
       </div>
@@ -330,7 +438,6 @@
 import MenuBlock from '../components/MenuBlock.vue'
 import MenuItemHeading from '../components/MenuItemHeading.vue'
 import MenuItemInput from '../components/MenuItemInput.vue'
-import MenuItemValue from '../components/MenuItemValue.vue'
 import MenuItemSpacer from '../components/MenuItemSpacer.vue'
 import MenuItemButton from '../components/MenuItemButton.vue'
 
@@ -339,7 +446,6 @@ export default {
     MenuBlock,
     MenuItemHeading,
     MenuItemInput,
-    MenuItemValue,
     MenuItemSpacer,
     MenuItemButton
   },

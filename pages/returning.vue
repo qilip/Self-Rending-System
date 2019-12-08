@@ -24,15 +24,31 @@
             대여한 물품
             <span class="mx-2 rounded p-2 bg-red-600 text-white text-sm font-normal">⚠ 데모용</span>
           </menu-item-heading>
+          <hr>
+          <div class="flex items-stretch">
+            <div class="px-4 py-2 flex-1">
+              물품 이름
+            </div>
+            <div class="px-4 py-2 w-20 text-right">
+              시리얼
+            </div>
+            <div class="px-4 py-2 w-40 text-right">
+              대여 보증금
+            </div>
+          </div>
           <template v-for="item in items" v-if="item.customerId == customerID && item.status =='rented'">
             <hr>
-            <MenuItemSpacer />
-            <hr>
-            <MenuItemValue v-bind:value="findDescription(item).name" name="이름" />
-            <hr>
-            <MenuItemValue v-bind:value="item.serialNumber" name="시리얼 번호" />
-            <hr>
-            <MenuItemValue v-bind:value="findDescription(item).price + ' 원'" name="대여 보증금" />
+            <div class="flex items-stretch">
+              <div class="px-4 py-2 flex-1">
+                {{ findDescription(item).name }}
+              </div>
+              <div class="px-4 py-2 w-20 shadow-inner bg-gray-100 text-right">
+                {{ item.serialNumber }}
+              </div>
+              <div class="px-4 py-2 w-40 shadow-inner bg-gray-100 text-right">
+                {{ findDescription(item).price }}
+              </div>
+            </div>
           </template>
         </menu-block>
       </div>
