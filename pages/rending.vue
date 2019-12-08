@@ -198,7 +198,7 @@ export default {
       this.$axios.get('/api/customers/' + this.customerID).then((res) => {
         this.currentCredit = res.data.credit
       }).catch((err) => {
-        console.log(err)
+        alert('해당하는 학생이 없습니다.' + err)
       })
     },
     addItem (item) {
@@ -206,9 +206,11 @@ export default {
         return
       }
       if (this.addedItems.find(i => i === item)) {
+        alert('이미 선택된 물품입니다.')
         return
       }
       if (item.status !== 'available') {
+        alert('대여 불가능한 물품입니다.')
         return
       }
       this.addedItems.push(item)
@@ -224,7 +226,17 @@ export default {
       this.addedItems.splice(index, 1)
     },
     requestRental () {
-      // TODO
+      this.$axios.post('/api/rent', {
+        customerID: this.customerID,
+        serialNumbers: this.addedItems.map(item => item.serialNumber)
+      }).then((res) => {
+        alert('success')
+        this.$router.push({
+          path: '/'
+        })
+      }).catch((err) => {
+        alert(err)
+      })
     }
   }
 }

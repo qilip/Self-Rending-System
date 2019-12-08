@@ -5,6 +5,7 @@ const { Schema } = mongoose
 const Item = new Schema({
   serialNumber: { type: Number, index: true },
   itemId: { type: Number, index: true },
+  customerId: String,
   status: {
     type: String,
     enum: ['available', 'pending', 'rented'],

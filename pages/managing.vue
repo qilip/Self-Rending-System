@@ -38,6 +38,16 @@
             </button>
           </h2>
         </li>
+        <li
+          v-bind:class="{ 'bg-gray-200': currentTab == 3, 'shadow-inner': currentTab == 3 }"
+          class="flex items-center"
+        >
+          <h2 class="px-4 py-2 font-semibold">
+            <button v-on:click="currentTab = 3" class="font-semibold">
+              기록 열람
+            </button>
+          </h2>
+        </li>
       </ul>
     </div>
 
@@ -128,6 +138,8 @@
                 <MenuItemValue v-bind:value="item.status" name="상태" />
                 <hr>
                 <MenuItemValue v-bind:value="item.itemId" name="품목 번호" />
+                <hr>
+                <MenuItemValue v-bind:value="item.customerId" name="빌린 사람" />
               </template>
             </menu-block>
 
@@ -165,6 +177,8 @@
               <MenuItemInput v-model="itemModifyForm.serialNumber" name="시리얼 번호" placeholder="id" />
               <hr>
               <MenuItemInput v-model="itemModifyForm.status" name="상태" placeholder="status" />
+              <hr>
+              <MenuItemInput v-model="itemModifyForm.customerId" name="빌린 사람" placeholder="customer id" />
               <hr>
               <MenuItemButton v-on:click.native="modifyItem()" name="수정" />
             </menu-block>
@@ -237,6 +251,36 @@
           정책 관리
         </h1>
       </div>
+
+      <div v-show="currentTab == 3" class="p-6">
+        <h1 class="text-3xl font-bold mb-6">
+          기록 열람
+        </h1>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
+            기록
+          </menu-item-heading>
+          <template v-for="record in records">
+            <hr>
+            <MenuItemSpacer />
+            <hr>
+            <MenuItemValue v-bind:value="record.__t" name="종류" />
+            <hr>
+            <MenuItemValue v-bind:value="record.Date" name="날짜" />
+            <hr>
+            <MenuItemValue v-bind:value="record.CustomerId" name="고객" />
+            <template v-if="record.__t == 'RentRecord'">
+              <hr>
+              <MenuItemValue v-bind:value="record.SerialNumber" name="빌린 물품" />
+            </template>
+            <template v-if="record.__t == 'ReturnRecord'">
+              <hr>
+              <MenuItemValue v-bind:value="record.SerialNumber" name="반납한 물품" />
+            </template>
+          </template>
+        </menu-block>
+      </div>
     </div>
   </div>
 </template>
@@ -274,7 +318,8 @@ export default {
 
       itemModifyForm: {
         serialNumber: 0,
-        status: ''
+        status: '',
+        customerId: ''
       },
 
       customerAddForm: {
@@ -296,11 +341,13 @@ export default {
     const itemDescriptions = await $axios.$get('/api/items/descriptions')
     const items = await $axios.$get('/api/items')
     const customers = await $axios.$get('/api/customers')
+    const records = await $axios.$get('/api/records')
 
     return {
       itemDescriptions,
       items,
-      customers
+      customers,
+      records
     }
   },
   methods: {
@@ -312,7 +359,6 @@ export default {
         alert('추가되었습니다.')
       }).catch((err) => {
         alert(err)
-        console.log(err)
       })
       alert('name : ' + this.name + ', price : ' + this.price)
     },
@@ -328,7 +374,7 @@ export default {
       this.$axios.patch('/api/items/descriptions/' + form.itemID, form).then((res) => {
         alert('수정되었습니다.')
       }).catch((err) => {
-        console.log(err)
+        alert(err)
       })
     },
     addItem () {
@@ -337,7 +383,7 @@ export default {
       }).then((res) => {
         alert('추가되었습니다.')
       }).catch((err) => {
-        console.log(err)
+        alert(err)
       })
     },
     deleteItem () {
@@ -345,7 +391,7 @@ export default {
       this.$axios.delete('/api/items/' + this.serialNumber).then((res) => {
         alert('삭제되었습니다.')
       }).catch((err) => {
-        console.log(err)
+        alert(err)
       })
     },
     modifyItem () {
@@ -353,21 +399,21 @@ export default {
       this.$axios.patch('/api/items/' + form.serialNumber, form).then((res) => {
         alert('수정되었습니다.')
       }).catch((err) => {
-        console.log(err)
+        alert(err)
       })
     },
     addCustomer () {
       this.$axios.post('/api/customers/new', this.customerAddForm).then((res) => {
         alert('추가되었습니다.')
       }).catch((err) => {
-        console.log(err)
+        alert(err)
       })
     },
     deleteCustomer () {
       this.$axios.delete('/api/customers/' + this.customerDeleteForm.studentId).then((res) => {
         alert('삭제되었습니다')
       }).catch((err) => {
-        console.log(err)
+        alert(err)
       })
     },
     modifyCustomer () {
@@ -376,7 +422,7 @@ export default {
         this.customerModifyForm).then((res) => {
         alert('수정되었습니다.')
       }).catch((err) => {
-        console.log(err)
+        alert(err)
       })
     }
   }

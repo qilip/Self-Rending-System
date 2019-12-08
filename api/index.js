@@ -28,6 +28,8 @@ const api = new Router()
 const items = require('./items')
 const customers = require('./customers')
 const manage = require('./manage')
+const transaction = require('./transactions')
+const records = require('./records')
 
 api.use(bodyParser())
 
@@ -37,7 +39,9 @@ api.get('/', (ctx) => {
 
 api.use('/items', items.routes())
 api.use('/customers', customers.routes())
+api.use('/records', records.routes())
 api.use('/manage', manage.routes())
+api.use(transaction.routes())
 
 app.use(api.routes()).use(api.allowedMethods())
 

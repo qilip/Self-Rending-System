@@ -15,13 +15,15 @@
         <hr>
         <MenuItemSpacer />
         <hr>
-        <MenuItemValue name="시리얼 번호" v-bind:value="item.serialNumber" />
+        <MenuItemValue v-bind:value="item.serialNumber" name="시리얼 번호" />
         <hr>
-        <MenuItemValue name="상태" v-bind:value="item.status" />
+        <MenuItemValue v-bind:value="item.status" name="상태" />
         <hr>
-        <MenuItemValue name="이름" v-bind:value="findDescription(item).name" />
+        <MenuItemValue v-bind:value="item.customerId" name="빌린 사람" />
         <hr>
-        <MenuItemValue name="가격" v-bind:value="findDescription(item).price + ' 원'" />
+        <MenuItemValue v-bind:value="findDescription(item).name" name="이름" />
+        <hr>
+        <MenuItemValue v-bind:value="findDescription(item).price + ' 원'" name="가격" />
       </template>
     </menu-block>
 
@@ -65,7 +67,7 @@
       <hr>
       <MenuItemSpacer />
       <hr>
-      <MenuItemValue name="반환 될 보증금" v-bind:value="priceSum + ' 원'" />
+      <MenuItemValue v-bind:value="priceSum + ' 원'" name="반환 될 보증금" />
       <hr>
       <MenuItemButton v-on:click.native="requestReturn()" name="반납하기" />
     </menu-block>
@@ -98,19 +100,19 @@ export default {
       priceSum: 0
     }
   },
+  watch: {
+    addedItems () {
+      this.priceSum = this.addedItems
+        .map(item => this.findDescription(item).price)
+        .reduce((accum, value) => accum + value)
+    }
+  },
   async asyncData ({ $axios }) {
     const items = await $axios.$get('/api/items')
     const itemDescriptions = await $axios.$get('/api/items/descriptions')
     return {
       items,
       itemDescriptions
-    }
-  },
-  watch: {
-    addedItems () {
-      this.priceSum = this.addedItems
-        .map(item => this.findDescription(item).price)
-        .reduce((accum, value) => accum + value)
     }
   },
   methods: {
@@ -125,8 +127,7 @@ export default {
       this.$axios.get('/api/items/' + serialNumber).then((res) => {
         this.addItem(res.data)
       }).catch((err) => {
-        alert('해당하는 물품이 없습니다.')
-        console.log(err)
+        alert('해당하는 물품이 없습니다.' + err)
       })
     },
     addItem (item) {
@@ -142,7 +143,16 @@ export default {
       this.addedItems.push(item)
     },
     requestReturn () {
-      // TODO
+      this.$axios.post('/api/return', {
+        serialNumbers: this.addedItems.map(item => item.serialNumber)
+      }).then((res) => {
+        alert('success')
+        this.$router.push({
+          path: '/'
+        })
+      }).catch((err) => {
+        alert(err)
+      })
     }
   }
 }
