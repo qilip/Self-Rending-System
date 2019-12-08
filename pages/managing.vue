@@ -281,18 +281,10 @@
                   </div>
                   <button
                     v-on:click="acceptReturn(item)"
-                    class="bg-red-300 px-4 py-2 hover:bg-red-400 block"
+                    class="bg-red-300 px-4 py-2 hover:bg-red-400 disabled:bg-gray-200 block"
                   >
                     확인
                   </button>
-                </div>
-              </template>
-              <template v-if="items.filter(item => item.staus === 'pending')">
-                <hr>
-                <MenuItemSpacer />
-                <hr>
-                <div class="px-4 py-2">
-                  현재 물품 대기 중인 물품이 없습니다.
                 </div>
               </template>
             </menu-block>
@@ -588,6 +580,7 @@ export default {
           status: 'available'
         })
       }).then((res) => {
+        alert('처리되었습니다.')
       }).catch((err) => {
         alert(err)
       })
