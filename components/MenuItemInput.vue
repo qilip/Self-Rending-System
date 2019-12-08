@@ -11,7 +11,7 @@
     </div>
     <input
       v-bind:placeholder="placeholder"
-      v-model:value="value"
+      v-model="data"
       class="flex-1 shadow-inner px-4 py-2"
     >
   </div>
@@ -38,8 +38,13 @@ export default {
       default: 'horizontal'
     }
   },
+  data () {
+    return {
+      data: this.value
+    }
+  },
   watch: {
-    value (val) {
+    data (val) {
       this.$emit('input', val)
     }
   }

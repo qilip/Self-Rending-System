@@ -14,12 +14,12 @@ exports.list = async (ctx) => {
 }
 
 exports.read = async (ctx) => {
-  const { serialNumber } = ctx.params
+  const { id } = ctx.params
 
   let item
 
   try{
-    item = await Item.findOne( { "serialNumber": serialNumber } ).exec()
+    item = await Item.findOne( { "serialNumber": id } ).exec()
   } catch (e) {
     return ctx.throw(500, e)
   }
