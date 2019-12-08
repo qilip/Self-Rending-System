@@ -92,6 +92,22 @@
               <hr>
               <menu-item-button v-on:click.native="deleteItemDescription()" name="삭제" />
             </menu-block>
+
+            <menu-block class="my-6 max-w-xl">
+              <menu-item-heading>
+                수정
+              </menu-item-heading>
+              <hr>
+              <menu-item-spacer />
+              <hr>
+              <menu-item-input v-model="itemDescriptionModifyForm.itemID" name="품목 번호" placeholder="id" />
+              <hr>
+              <menu-item-input v-model="itemDescriptionModifyForm.name" name="이름" placeholder="이름" />
+              <hr>
+              <menu-item-input v-model="itemDescriptionModifyForm.price" name="가격" placeholder="대여 보증금" />
+              <hr>
+              <menu-item-button v-on:click.native="modifyItemDescription()" name="수정" />
+            </menu-block>
           </div>
 
           <div class="p-4 w-full md:max-w-xl">
@@ -137,6 +153,20 @@
               <MenuItemInput v-model="serialNumber" name="시리얼 번호" placeholder="id" />
               <hr>
               <MenuItemButton v-on:click.native="deleteItem()" name="삭제" />
+            </menu-block>
+
+            <menu-block class="my-6 max-w-xl">
+              <menu-item-heading>
+                물품 수정
+              </menu-item-heading>
+              <hr>
+              <MenuItemSpacer />
+              <hr>
+              <MenuItemInput v-model="itemModifyForm.serialNumber" name="시리얼 번호" placeholder="id" />
+              <hr>
+              <MenuItemInput v-model="itemModifyForm.status" name="상태" placeholder="status" />
+              <hr>
+              <MenuItemButton v-on:click.native="modifyItem()" name="수정" />
             </menu-block>
           </div>
         </div>
@@ -236,6 +266,17 @@ export default {
       itemID: 0,
       serialNumber: 0,
 
+      itemDescriptionModifyForm: {
+        itemID: 0,
+        name: '',
+        price: 0
+      },
+
+      itemModifyForm: {
+        serialNumber: 0,
+        status: ''
+      },
+
       customerAddForm: {
         studentId: '',
         credit: 0
@@ -282,6 +323,14 @@ export default {
         alert(err)
       })
     },
+    modifyItemDescription () {
+      const form = this.itemDescriptionModifyForm
+      this.$axios.patch('/api/items/descriptions/' + form.itemID, form).then((res) => {
+        alert('수정되었습니다.')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
     addItem () {
       this.$axios.post('/api/items/new', {
         itemId: Number(this.itemID)
@@ -295,6 +344,14 @@ export default {
       alert('serialNumber : ' + this.serialNumber)
       this.$axios.delete('/api/items/' + this.serialNumber).then((res) => {
         alert('삭제되었습니다.')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    modifyItem () {
+      const form = this.itemModifyForm
+      this.$axios.patch('/api/items/' + form.serialNumber, form).then((res) => {
+        alert('수정되었습니다.')
       }).catch((err) => {
         console.log(err)
       })

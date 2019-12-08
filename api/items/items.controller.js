@@ -57,7 +57,7 @@ exports.update = async (ctx) => {
   let item
 
   try {
-    item = await Item.findOneAndUpdate({ 'serialNumber': serialNumber }, ctx.request.body, {
+    item = await Item.findOneAndUpdate({ 'serialNumber': id }, ctx.request.body, {
       new: true
     })
   } catch (e) {
