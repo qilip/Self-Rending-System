@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useCreateIndex: true
 }).then(
   (response) => {
-    console.log('MongoDB Connect Sucess')
+    console.log('MongoDB Connect Success')
   }
 ).catch((e) => {
   console.error(e)

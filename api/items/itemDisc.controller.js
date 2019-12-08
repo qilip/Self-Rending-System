@@ -80,5 +80,5 @@ exports.delete = async (ctx) => {
     return ctx.throw(500, e)
   }
 
-  ctx.body = 'delete sucess'
+  ctx.body = 'delete success'
 }

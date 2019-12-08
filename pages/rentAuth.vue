@@ -23,7 +23,7 @@
         </h2>
         <input placeholder="학번" class="px-4 py-2 shadow-inner w-full">
       </div>
-      <nuxt-link to="rending">
+      <nuxt-link to="rending" class="no-underline">
         <button class="shadow rounded bg-blue-200 hover:bg-blue-400 p-2 w-full my-6 block max-w-lg">
           로그인
         </button>
