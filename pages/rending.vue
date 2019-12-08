@@ -4,9 +4,6 @@
       <h1 class="text-left font-bold text-5xl ml-8 mt-4">
         대여
       </h1>
-      <h2 class="text-left text-3xl ml-8 mb-8">
-        물품 선택
-      </h2>
     </div>
     <div class="flex flex-wrap p-4">
       <div class="p-4 w-full lg:w-1/3">
