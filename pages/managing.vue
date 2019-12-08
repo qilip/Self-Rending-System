@@ -140,6 +140,60 @@
         <h1 class="text-5xl font-bold mb-6">
           사용자 관리
         </h1>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
+            사용자 목록
+          </menu-item-heading>
+          <template v-for="customer in customers">
+            <hr>
+            <MenuItemSpacer />
+            <hr>
+            <MenuItemValue v-bind:value="customer.studentId" name="아이디" />
+            <hr>
+            <MenuItemValue v-bind:value="customer.credit" name="보증금" />
+          </template>
+        </menu-block>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
+            사용자 추가
+          </menu-item-heading>
+          <hr>
+          <MenuItemSpacer />
+          <hr>
+          <MenuItemInput v-model="customerAddForm.studentId" name="학번" placeholder="student id" />
+          <hr>
+          <MenuItemInput v-model="customerAddForm.credit" name="보증금" placeholder="credit" />
+          <hr>
+          <MenuItemButton v-on:click.native="addCustomer()" name="추가" />
+        </menu-block>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
+            사용자 삭제
+          </menu-item-heading>
+          <hr>
+          <MenuItemSpacer />
+          <hr>
+          <MenuItemInput v-model="customerDeleteForm.studentId" name="학번" placeholder="student id" />
+          <hr>
+          <MenuItemButton v-on:click.native="deleteCustomer()" name="삭제" />
+        </menu-block>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
+            사용자 수정
+          </menu-item-heading>
+          <hr>
+          <MenuItemSpacer />
+          <hr>
+          <MenuItemInput v-model="customerModifyForm.studentId" name="학번" placeholder="student id" />
+          <hr>
+          <MenuItemInput v-model="customerModifyForm.credit" name="보증금" placeholder="액수" />
+          <hr>
+          <MenuItemButton v-on:click.native="modifyCustomer()" name="수정" />
+        </menu-block>
       </div>
 
       <div v-show="currentTab == 2" class="p-6">
@@ -176,15 +230,30 @@ export default {
       itemID: 0,
       serialNumber: 0,
 
+      customerAddForm: {
+        studentId: '',
+        credit: 0
+      },
+      customerDeleteForm: {
+        studentId: ''
+      },
+      customerModifyForm: {
+        studentId: '',
+        credit: 0
+      },
+
       currentTab: 0
     }
   },
   async asyncData ({ $axios }) {
     const itemDescriptions = await $axios.$get('/api/items/descriptions')
     const items = await $axios.$get('/api/items')
+    const customers = await $axios.$get('/api/customers')
+
     return {
       itemDescriptions,
-      items
+      items,
+      customers
     }
   },
   methods: {
@@ -220,6 +289,29 @@ export default {
       alert('serialNumber : ' + this.serialNumber)
       this.$axios.delete('/api/items/' + this.serialNumber).then((res) => {
         alert('삭제되었습니다.')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    addCustomer () {
+      this.$axios.post('/api/customers/new', this.customerAddForm).then((res) => {
+        alert('추가되었습니다.')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    deleteCustomer () {
+      this.$axios.delete('/api/customers/' + this.customerDeleteForm.studentId).then((res) => {
+        alert('삭제되었습니다')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    modifyCustomer () {
+      this.$axios.patch(
+        '/api/customers/' + this.customerModifyForm.studentId,
+        this.customerModifyForm).then((res) => {
+        alert('수정되었습니다.')
       }).catch((err) => {
         console.log(err)
       })

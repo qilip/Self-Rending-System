@@ -18,7 +18,7 @@ exports.read = async (ctx) => {
   let customer
 
   try{
-    customer = await Customer.findOne( { "studentId":id } ).exec()
+    customer = await Customer.findOne( { "studentId": id } ).exec()
   } catch (e) {
     return ctx.throw(500, e)
   }
@@ -60,4 +60,16 @@ exports.update = async (ctx) => {
   }
 
   ctx.body = customer
+}
+
+exports.delete = async (ctx) => {
+  const { id } = ctx.params
+
+  try {
+    await Customer.findOneAndRemove({ 'studentId': id }).exec()
+  } catch (e) {
+    return ctx.throw(500, e)
+  }
+
+  ctx.body = 'delete success'
 }
