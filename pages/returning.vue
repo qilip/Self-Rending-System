@@ -131,6 +131,10 @@ export default {
       })
     },
     addItem (item) {
+      if (item.status === 'pending') {
+        alert('반납 처리가 진행중인 물품입니다.')
+        return
+      }
       if (item.status !== 'rented') {
         alert('빌린 물품이 아닙니다.')
         return

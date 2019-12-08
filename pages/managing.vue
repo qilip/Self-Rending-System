@@ -176,11 +176,44 @@
               <hr>
               <MenuItemInput v-model="itemModifyForm.serialNumber" name="시리얼 번호" placeholder="id" />
               <hr>
-              <MenuItemInput v-model="itemModifyForm.status" name="상태" placeholder="status" />
+              <div class="flex flex-row">
+                <div class="flex-1 px-4 py-2">
+                  상태
+                </div>
+                <select v-model="itemModifyForm.status" size="1" class="flex-1 block px-4 py-2 shadow-inner">
+                  <option value="available">
+                    available
+                  </option>
+                  <option value="rented">
+                    rented
+                  </option>
+                  <option value="pending">
+                    pending
+                  </option>
+                </select>
+              </div>
               <hr>
               <MenuItemInput v-model="itemModifyForm.customerId" name="빌린 사람" placeholder="customer id" />
               <hr>
               <MenuItemButton v-on:click.native="modifyItem()" name="수정" />
+            </menu-block>
+
+            <menu-block class="my-6 max-w-xl">
+              <menu-item-heading>
+                물품 반납 확인
+              </menu-item-heading>
+              <template v-for="item in items.filter(item => item.status === 'pending')">
+                <hr>
+                <MenuItemSpacer />
+                <hr>
+                <MenuItemValue v-bind:value="findDescription(item).name" name="이름" />
+                <hr>
+                <MenuItemValue v-bind:value="item.serialNumber" name="시리얼 번호" />
+                <hr>
+                <MenuItemValue v-bind:value="item.customerId" name="빌린 사람" />
+                <hr>
+                <MenuItemButton v-on:click.native="acceptReturn(item)" name="확인" />
+              </template>
             </menu-block>
           </div>
         </div>
@@ -351,6 +384,9 @@ export default {
     }
   },
   methods: {
+    findDescription (item) {
+      return this.itemDescriptions.find(desc => desc.id === item.itemId)
+    },
     addItemDescription () {
       this.$axios.post('/api/items/descriptions/new', {
         name: this.name,
@@ -424,6 +460,9 @@ export default {
       }).catch((err) => {
         alert(err)
       })
+    },
+    acceptReturn (item) {
+      alert(item.serialNumber)
     }
   }
 }

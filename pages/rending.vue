@@ -226,6 +226,15 @@ export default {
       this.addedItems.splice(index, 1)
     },
     requestRental () {
+      if (!this.customerID) {
+        alert('학번을 입력해 주세요.')
+        return
+      }
+      if (this.resultCredit < 0) {
+        alert('보증금이 부족합니다.')
+        return
+      }
+
       this.$axios.post('/api/rent', {
         customerID: this.customerID,
         serialNumbers: this.addedItems.map(item => item.serialNumber)
