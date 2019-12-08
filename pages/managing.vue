@@ -214,6 +214,14 @@
                 <hr>
                 <MenuItemButton v-on:click.native="acceptReturn(item)" name="확인" />
               </template>
+              <template v-if="items.filter(item => item.staus === 'pending')">
+                <hr>
+                <MenuItemSpacer />
+                <hr>
+                <div class="px-4 py-2">
+                  현재 물품 대기 중인 물품이 없습니다.
+                </div>
+              </template>
             </menu-block>
           </div>
         </div>
@@ -462,7 +470,26 @@ export default {
       })
     },
     acceptReturn (item) {
-      alert(item.serialNumber)
+      const description = this.findDescription(item)
+      alert(description.name)
+
+      this.$axios.get('/api/customers/' + item.customerId).then((res) => {
+        alert('보증금 : ' + res.data.credit)
+
+        return res.data.credit
+      }).then((credit) => {
+        return this.$axios.patch('/api/customers/' + item.customerId, {
+          credit: credit + description.price
+        })
+      }).then((res) => {
+        return this.$axios.patch('/api/items/' + item.serialNumber, {
+          status: 'available'
+        })
+      }).then((res) => {
+        alert('success')
+      }).catch((err) => {
+        alert(err)
+      })
     }
   }
 }
