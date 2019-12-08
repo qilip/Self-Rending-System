@@ -13,6 +13,8 @@ customers.get('/:id', customersCtrl.read)
 
 customers.post('/new', customersCtrl.create)
 
+customers.delete('/:id', customersCtrl.delete)
+
 customers.patch('/:id', customersCtrl.update)
 
 customers.get('/:id/check', dummy)
