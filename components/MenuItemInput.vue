@@ -9,7 +9,11 @@
     <div class="flex-1 px-4 py-2">
       {{ name }}
     </div>
-    <input v-bind:placeholder="placeholder" class="flex-1 shadow-inner px-4 py-2">
+    <input
+      v-bind:placeholder="placeholder"
+      v-model:value="value"
+      class="flex-1 shadow-inner px-4 py-2"
+    >
   </div>
 </template>
 
@@ -25,9 +29,18 @@ export default {
       type: String,
       default: ''
     },
+    value: {
+      type: [String, Number],
+      default: ''
+    },
     orientation: {
       type: String,
       default: 'horizontal'
+    }
+  },
+  watch: {
+    value (val) {
+      this.$emit('input', val)
     }
   }
 }

@@ -49,17 +49,65 @@
 
         <menu-block class="my-6 max-w-xl">
           <menu-item-heading>
+            목록
+          </menu-item-heading>
+          <template v-for="desc in itemDescriptions">
+            <hr>
+            <menu-item-spacer />
+            <hr>
+            <menu-item-value v-bind:value="desc.name" name="이름" />
+            <hr>
+            <menu-item-value v-bind:value="desc.id" name="품번" />
+            <hr>
+            <menu-item-value v-bind:value="desc.price + ' 원'" name="가격" />
+            <hr>
+            <menu-item-value v-bind:value="desc.items.join(', ')" name="물품 목록" />
+          </template>
+        </menu-block>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
+            추가
+          </menu-item-heading>
+          <hr>
+          <menu-item-spacer />
+          <hr>
+          <menu-item-input v-model="name" name="이름" placeholder="이름" />
+          <hr>
+          <menu-item-input v-model="price" name="가격" placeholder="가격" />
+          <hr>
+          <menu-item-button v-on:click.native="addItemDescription()" name="추가" />
+        </menu-block>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
+            삭제
+          </menu-item-heading>
+          <hr>
+          <menu-item-spacer />
+          <hr>
+          <menu-item-input v-model="itemID" name="품번" placeholder="id" />
+          <hr>
+          <menu-item-button v-on:click.native="deleteItemDescription()" name="삭제" />
+        </menu-block>
+
+        <h1 class="text-5xl font-bold my-6">
+          물품 관리
+        </h1>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
             물품 목록
           </menu-item-heading>
           <template v-for="item in items">
             <hr>
             <MenuItemSpacer />
             <hr>
-            <MenuItemValue v-bind:value="item.name" name="이름" />
-            <hr>
             <MenuItemValue v-bind:value="item.serialNumber" name="시리얼 번호" />
             <hr>
             <MenuItemValue v-bind:value="item.status" name="상태" />
+            <hr>
+            <MenuItemValue v-bind:value="item.itemId" name="종류" />
           </template>
         </menu-block>
 
@@ -70,20 +118,21 @@
           <hr>
           <MenuItemSpacer />
           <hr>
-          <MenuItemInput name="검색" placeholder="이름" orientation="vertical" />
-          <template v-for="desc in itemDescriptions">
-            <div v-on:click="test()" class="cursor-pointer relative">
-              <hr>
-              <MenuItemValue v-bind:value="desc.name" name="이름" />
-              <hr>
-              <MenuItemValue v-bind:value="desc.price" name="가격" />
-              <div class="absolute inset-0 w-full h-full hover:bg-gray-500 hover:inner-shadow opacity-25 hover:pointer-events-none" />
-            </div>
-            <hr>
-            <MenuItemSpacer />
-          </template>
+          <MenuItemInput v-model="itemID" name="품번" placeholder="id" />
           <hr>
-          <MenuItemButton v-on:click.native="test()" name="추가" />
+          <MenuItemButton v-on:click.native="addItem()" name="추가" />
+        </menu-block>
+
+        <menu-block class="my-6 max-w-xl">
+          <menu-item-heading>
+            물품 삭제
+          </menu-item-heading>
+          <hr>
+          <MenuItemSpacer />
+          <hr>
+          <MenuItemInput v-model="serialNumber" name="시리얼 번호" placeholder="id" />
+          <hr>
+          <MenuItemButton v-on:click.native="deleteItem()" name="삭제" />
         </menu-block>
       </div>
 
@@ -121,40 +170,60 @@ export default {
   },
   data () {
     return {
-      currentTab: 0,
-      itemDescriptions: [
-        {
-          name: '단우산',
-          price: 1000
-        },
-        {
-          name: '장우산',
-          price: 2000
-        }
-      ],
-      items: [
-        {
-          name: '계산기',
-          serialNumber: 'dd32c653-0d7e-45e6-b9a4-ee7a0f6fa42f',
-          status: 'available'
-        },
-        {
-          name: '계산기',
-          serialNumber: 'ab4315a3-6972-4a22-8a17-eda6e114830a',
-          status: 'rented'
-        },
-        {
-          name: '행사용 텐트',
-          serialNumber: '10677320-fb02-415c-9c23-b092e233393a',
-          status: 'pending'
-        }
-      ]
+      name: '',
+      price: 0,
+
+      itemID: 0,
+      serialNumber: 0,
+
+      currentTab: 0
+    }
+  },
+  async asyncData ({ $axios }) {
+    const itemDescriptions = await $axios.$get('/api/items/descriptions')
+    const items = await $axios.$get('/api/items')
+    return {
+      itemDescriptions,
+      items
     }
   },
   methods: {
-    // test () {
-    //   console.log('test')
-    // }
+    addItemDescription () {
+      this.$axios.post('/api/items/descriptions/new', {
+        name: this.name,
+        price: this.price
+      }).then((res) => {
+        alert('추가되었습니다.')
+      }).catch((err) => {
+        alert(err)
+        console.log(err)
+      })
+      alert('name : ' + this.name + ', price : ' + this.price)
+    },
+    deleteItemDescription () {
+      this.$axios.delete('/api/items/descriptions/' + this.itemID).then((res) => {
+        alert('삭제되었습니다.')
+      }).catch((err) => {
+        alert(err)
+      })
+    },
+    addItem () {
+      this.$axios.post('/api/items/new', {
+        itemId: Number(this.itemID)
+      }).then((res) => {
+        alert('추가되었습니다.')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    deleteItem () {
+      alert('serialNumber : ' + this.serialNumber)
+      this.$axios.delete('/api/items/' + this.serialNumber).then((res) => {
+        alert('삭제되었습니다.')
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>

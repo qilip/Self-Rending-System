@@ -11,8 +11,8 @@ const ItemDescription = new Schema({
 
 ItemDescription.plugin(AutoIncrement, { inc_field: 'id' })
 
-ItemDescription.methods.addItem = function (itemId) {
-  this.items.push(itemId)
+ItemDescription.methods.addItem = function (serialNumber) {
+  this.items.push(serialNumber)
   return this.save()
 }
 

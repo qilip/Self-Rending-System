@@ -74,7 +74,7 @@ exports.delete = async (ctx) => {
 
   try {
     let itemDescription = await ItemDescription.findOne({ 'id': id }).exec()
-    await Item.deleteMany({ 'description': itemDescription.id }).exec()
+    await Item.deleteMany({ 'itemId': itemDescription.id }).exec()
     await ItemDescription.findOneAndRemove({ 'id': id }).exec()
   } catch (e) {
     return ctx.throw(500, e)
