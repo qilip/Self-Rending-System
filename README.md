@@ -69,6 +69,7 @@ GET    /api/customers
 POST   /api/customers/new
 
 GET    /api/customers/:id
+DELETE /api/customers/:id
 PATCH  /api/customers/:id
 ```
 
