@@ -577,11 +577,7 @@ export default {
     },
     acceptReturn (item) {
       const description = this.findDescription(item)
-      alert(description.name)
-
       this.$axios.get('/api/customers/' + item.customerId).then((res) => {
-        alert('보증금 : ' + res.data.credit)
-
         return res.data.credit
       }).then((credit) => {
         return this.$axios.patch('/api/customers/' + item.customerId, {
@@ -592,7 +588,6 @@ export default {
           status: 'available'
         })
       }).then((res) => {
-        alert('success')
       }).catch((err) => {
         alert(err)
       })
