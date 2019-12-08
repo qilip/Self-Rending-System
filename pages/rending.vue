@@ -25,25 +25,35 @@
 
         <div class="shadow rounded overflow-hidden">
           <h2 class="px-4 py-2 text-xl font-semibold">
-            물품 목록
+            대여 가능 물품
             <span class="mx-2 rounded p-2 bg-red-600 text-white text-sm font-normal inline-block">⚠ 데모용</span>
           </h2>
           <hr>
-          <select v-model="selectedItemIndex" name="item-to-rent" size="6" class="w-full block">
-            <option v-for="(item, index) in items" v-bind:value="index" class="px-4 py-2">
-              {{ itemDescriptions.find(desc => desc.id == item.itemId).name }},
-              {{ itemDescriptions.find(desc => desc.id == item.itemId).price }} 원,
-              {{ item.status }},
-              시리얼 번호: {{ item.serialNumber }}
-            </option>
-          </select>
-          <hr>
-          <button
-            v-on:click="addItem(items[selectedItemIndex])"
-            class="bg-gray-200 hover:bg-gray-400 p-2 w-full block"
-          >
-            추가
-          </button>
+          <div class="flex items-stretch">
+            <div class="px-4 py-2 flex-1">
+              아이템 이름
+            </div>
+            <div class="px-4 py-2 shadow-inner bg-gray-100 w-20 text-right">
+              시리얼
+            </div>
+            <div class="shadow-inner px-4 py-2 bg-gray-100 w-40 text-right">
+              대여 보증금
+            </div>
+          </div>
+          <template v-for="(item, index) in items" v-bind:value="index" v-if="item.status == 'available'" class="px-4 py-2">
+            <hr>
+            <div class="flex items-stretch">
+              <div class="px-4 py-2 flex-1">
+                {{ itemDescriptions.find(desc => desc.id == item.itemId).name }}
+              </div>
+              <div class="px-4 py-2 shadow-inner bg-gray-100 w-20 text-right">
+                {{ item.serialNumber }}
+              </div>
+              <div class="shadow-inner px-4 py-2 bg-gray-100 w-40 text-right">
+                {{ itemDescriptions.find(desc => desc.id == item.itemId).price }} 원
+              </div>
+            </div>
+          </template>
         </div>
       </div>
 
@@ -80,10 +90,10 @@
               <div class="px-4 py-2 flex-1">
                 {{ itemDescriptions.find(desc => desc.id == item.itemId).name }}
               </div>
-              <div class="px-4 py-2 shadow-inner bg-gray-100">
+              <div class="px-4 py-2 shadow-inner bg-gray-100 w-20 text-right">
                 {{ item.serialNumber }}
               </div>
-              <div class="shadow-inner px-4 py-2 bg-gray-100 flex-auto text-right">
+              <div class="shadow-inner px-4 py-2 bg-gray-100 w-40 text-right">
                 {{ itemDescriptions.find(desc => desc.id == item.itemId).price }} 원
               </div>
               <button

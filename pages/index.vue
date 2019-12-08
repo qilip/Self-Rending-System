@@ -12,7 +12,7 @@
     <div class="flex-1 max-w-6xl self-center my-6">
       <div class="flex flex-col md:flex-row text-center justify-center items-stretch">
         <div class="flex-1 rounded overflow-hidden shadow-lg hover:shadow-2xl m-4">
-          <nuxt-link to="/rentAuth" class="no-underline text-black">
+          <nuxt-link to="/rending" class="no-underline text-black">
             <img class="w-full" src="/image/rend.jpg" alt="Rending goods">
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2">
