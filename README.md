@@ -4,6 +4,8 @@
 
 ## Members
 
+### Team 도분설스토리 (Dobunseol Story)
+
 * 201820744 김문만
 * 201820745 박수빈
 * 201820735 신상민
@@ -14,7 +16,11 @@
 
 해당 프로젝트는 데모용 프로젝트입니다. 보안/인증 처리는 구현하지 않았습니다.
 
-실행을 위해서는 .env에 MongoDB 서버의 주소가 필요합니다.
+직접 실행을 위해서는 .env에 MongoDB 서버의 주소가 필요합니다.
+
+테스트 주소: https://srs.abys.dev
+
+*최초 접속시 Dyno 시작을 위해 수 초 이상 걸릴 수 있습니다.*
 
 ### Build Setup
 
@@ -30,7 +36,7 @@ $ npm run build
 $ npm run start
 ```
 
-## Technoledge Stack
+## Technology Stack
 
 ### Frontend
 
@@ -64,6 +70,8 @@ SelfRendingSystem/
 
 ## API
 
+### Item Description
+
 ```text
 GET    /api/items/descriptions
 POST   /api/items/descriptions/new
@@ -72,6 +80,8 @@ GET    /api/items/descriptions/:id
 PATCH  /api/items/descriptions/:id
 DELETE /api/items/descriptions/:id
 ```
+
+### Item
 
 ```text
 GET    /api/items
@@ -82,6 +92,8 @@ PATCH  /api/items/:id
 DELETE /api/items/:id
 ```
 
+### Customer
+
 ```text
 GET    /api/customers
 POST   /api/customers/new
@@ -91,9 +103,26 @@ DELETE /api/customers/:id
 PATCH  /api/customers/:id
 ```
 
+### Manage
+
 ```text
 GET    /api/manage/rules
 
 GET    /api/manage/rules/:id
 PATCH  /api/manage/rules/:id
+```
+
+### Record
+
+```text
+GET    /api/records
+```
+
+### Transaction
+
+```text
+POST   /api/payment
+POST   /api/refund
+POST   /api/rent
+POST   /api/return
 ```
