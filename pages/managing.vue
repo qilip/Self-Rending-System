@@ -398,7 +398,7 @@
               물품 번호
             </div>
           </div>
-          <template v-for="record in records">
+          <template v-for="record in records.slice().reverse()">
             <hr>
             <div class="flex items-stretch">
               <div class="px-4 py-2 flex-1 text-center">
