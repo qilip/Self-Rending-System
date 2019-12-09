@@ -72,10 +72,10 @@
                 <div class="px-4 py-2 flex-1">
                   물품 이름
                 </div>
-                <div class="px-4 py-2 w-20 text-right">
-                  시리얼
-                </div>
                 <div class="px-4 py-2 w-24 text-right">
+                  품목번호
+                </div>
+                <div class="px-4 py-2 w-20 text-right">
                   보증금
                 </div>
                 <div class="px-4 py-2 w-32 text-right">
@@ -88,10 +88,10 @@
                   <div class="px-4 py-2 flex-1">
                     {{ desc.name }}
                   </div>
-                  <div class="px-4 py-2 w-20 shadow-inner bg-gray-100 text-right">
+                  <div class="px-4 py-2 w-24 shadow-inner bg-gray-100 text-right">
                     {{ desc.id }}
                   </div>
-                  <div class="px-4 py-2 w-24 shadow-inner bg-gray-100 text-right">
+                  <div class="px-4 py-2 w-20 shadow-inner bg-gray-100 text-right">
                     {{ desc.price }}
                   </div>
                   <div class="px-4 py-2 w-32 shadow-inner bg-gray-100 text-right">
@@ -158,8 +158,8 @@
                 <div class="px-4 py-2 flex-1">
                   시리얼
                 </div>
-                <div class="px-4 py-2 w-32 text-right">
-                  품목 번호
+                <div class="px-4 py-2 w-24 text-right">
+                  품목번호
                 </div>
                 <div class="px-4 py-2 w-24 text-right">
                   상태
@@ -175,7 +175,7 @@
                   <div class="px-4 py-2 flex-1">
                     {{ item.serialNumber }}
                   </div>
-                  <div class="px-4 py-2 w-32 shadow-inner bg-gray-100 text-right">
+                  <div class="px-4 py-2 w-24 shadow-inner bg-gray-100 text-right">
                     {{ item.itemId }}
                   </div>
                   <div class="px-4 py-2 w-24 shadow-inner bg-gray-100 text-right">

@@ -88,7 +88,7 @@
             <div class="px-4 py-2 w-20 text-right">
               시리얼
             </div>
-            <div class="px-4 py-2 w-40 text-right">
+            <div class="px-4 py-2 w-32 text-right">
               대여 보증금
             </div>
             <div class="px-4 py-2 block">
@@ -104,7 +104,7 @@
               <div class="px-4 py-2 shadow-inner bg-gray-100 w-20 text-right">
                 {{ item.serialNumber }}
               </div>
-              <div class="shadow-inner px-4 py-2 bg-gray-100 w-40 text-right">
+              <div class="shadow-inner px-4 py-2 bg-gray-100 w-32 text-right">
                 {{ itemDescriptions.find(desc => desc.id == item.itemId).price }} 원
               </div>
               <button
