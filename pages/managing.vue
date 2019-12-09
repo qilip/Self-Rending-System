@@ -577,7 +577,8 @@ export default {
         })
       }).then((res) => {
         return this.$axios.patch('/api/items/' + item.serialNumber, {
-          status: 'available'
+          status: 'available',
+          customerId: ''
         })
       }).then((res) => {
         alert('처리되었습니다.')
